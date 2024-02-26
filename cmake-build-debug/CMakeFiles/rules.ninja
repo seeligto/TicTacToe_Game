@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\seeli\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -SD:\GitHub\Repos\TicTacToeWIP\HFU-TicTacToe_tt -BD:\GitHub\Repos\TicTacToeWIP\HFU-TicTacToe_tt\cmake-build-debug
+  command = C:\Users\seeli\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -SD:\GitHub\Repos\TicTacToe_Game -BD:\GitHub\Repos\TicTacToe_Game\cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

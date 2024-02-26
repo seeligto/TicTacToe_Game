@@ -4,97 +4,107 @@
 /* Macht das Tippen leichter */
 using namespace std;
 
-Spielfeld::Spielfeld() {
-    /* Initialisiere Spielfeld */
-    for (int x = 0; x < 3; x++) {
-        for (int y = 0; y < 3; y++) {
-            belegung[y][x] = Leer;
+GameBoard::GameBoard() {
+    /* Initialisiere GameBoard */
+    for (int columns = 0; columns < 3; columns++) {
+        for (int rows = 0; rows < 3; rows++) {
+            position[rows][columns] = Leer;
         }
     }
 }
 
-void Spielfeld::zeige(ostream& os) {
+void GameBoard::printBoard(ostream &os) {
     /* Spaltenkopf */
     os << "  ABC" << endl;
-    for (int y = 0; y < 3; y++) {
+    for (int rows = 0; rows < 3; rows++) {
         /* Zeilenkopf */
-        os << setw(1) << (y+1) << ' ';
+        os << setw(1) << (rows + 1) << ' ';
         /* Zeileninhalt */
-        for (int x = 0; x < 3; x++) {
-            os << belegung[y][x];
+        for (int columns = 0; columns < 3; columns++) {
+            os << position[rows][columns];
         }
         os << endl;
     }
 }
 
-void Spielfeld::setze(int y, int x, Spieler spieler) {
-    if (0 <= y && y <= 2 && 0 <= x && x <= 2) {
-        belegung[y][x] = (Markierung)spieler;
+void GameBoard::setField(int rows, int columns, Player player) {
+    if (0 <= rows && rows <= 2 && 0 <= columns && columns <= 2) {
+        position[rows][columns] = (Marking)player;
     }
 }
 
-void Spielfeld::setzeReset(int y, int x) {
-    if (0 <= y && y <= 2 && 0 <= x && x <= 2) {
-        belegung[y][x] = Leer;
+void GameBoard::resetField(int rows, int columns) {
+    if (0 <= rows && rows <= 2 && 0 <= columns && columns <= 2) {
+        position[rows][columns] = Leer;
     }
 }
 
-Spielfeld::Spielstand Spielfeld::spielstand() {
-    if (hatGewonnen(Spieler_O)) {
-        return Gewinn_O;
-    } else if (hatGewonnen(Spieler_X)) {
-        return Gewinn_X;
-    } else if (alleFelderBelegt()) {
-        return Unentschieden;
+GameBoard::Scoring GameBoard::gameScore() {
+    if (hasWon(Player_O)) {
+        return WinO;
+    } else if (hasWon(Player_X)) {
+        return WinX;
+    } else if (allFieldsTaken()) {
+        return Draw;
     } else {
-        return Offen;
+        return Open;
     }
 }
 
-bool Spielfeld::hatGewonnen(Spieler spieler) {
+bool GameBoard::hasWon(Player player) {
     // Zeile belegt?
-    for (int y = 0; y < 3; y++) {
-        if (belegung[y][0] == (Markierung)spieler &&
-            belegung[y][1] == (Markierung)spieler &&
-            belegung[y][2] == (Markierung)spieler) {
-                return true;
+    for (int rows = 0; rows < 3; rows++) {
+        if (position[rows][0] == (Marking)player &&
+            position[rows][1] == (Marking)player &&
+            position[rows][2] == (Marking)player) {
+            return true;
         }
     }
     // Spalte belegt?
-    for (int x = 0; x < 3; x++) {
-        if (belegung[0][x] == (Markierung)spieler &&
-            belegung[1][x] == (Markierung)spieler &&
-            belegung[2][x] == (Markierung)spieler) {
-                return true;
+    for (int columns = 0; columns < 3; columns++) {
+        if (position[0][columns] == (Marking)player &&
+            position[1][columns] == (Marking)player &&
+            position[2][columns] == (Marking)player) {
+            return true;
         }
     }
     // 1. Hauptdiagonale belegt?
-    if (belegung[0][0] == (Markierung)spieler &&
-        belegung[1][1] == (Markierung)spieler &&
-        belegung[2][2] == (Markierung)spieler) {
-            return true;
+    if (position[0][0] == (Marking)player &&
+        position[1][1] == (Marking)player &&
+        position[2][2] == (Marking)player) {
+        return true;
     }
     // 2. Hauptdiagonale belegt?
-    if (belegung[0][2] == (Markierung)spieler &&
-        belegung[1][1] == (Markierung)spieler &&
-        belegung[2][0] == (Markierung)spieler) {
-            return true;
+    if (position[0][2] == (Marking)player &&
+        position[1][1] == (Marking)player &&
+        position[2][0] == (Marking)player) {
+        return true;
     }
     return false;
 }
+bool GameBoard::winPossible() {
+    // TODO:
+    /*
+     * 1. Prüfe, ob ein Spieler gewonnen hat
+     * 2. Prüfe, ob alle Felder belegt sind
+     * 3. Prüfe, ob es noch gewinnmoeglichkeiten gibt
+     * 3.1. Prüfe, ob ein Spieler in der nächsten Runde gewinnen kann
+     * 3.2. Prüfe, ob ein Spieler in der nächsten Runde verlieren kann
+     * 3.3. Prüfe, ob ein Spieler in der nächsten Runde ein Feld belegen kann, dass den Gegner daran hindert zu gewinnen
+     * 3.4. Prüfe, ob ein Spieler in der nächsten Runde ein Feld belegen kann, dass den Gegner daran hindert zu verlieren
+     */
+    if (hasWon(Player_O) || hasWon(Player_X) || allFieldsTaken()) {
+        return false;
+    }else{}
+}
+void checkNextBestMove(GameBoard board, GameBoard::Player player) {
 
-bool Spielfeld::ganzeReihe(int y, Spieler spieler) {
-    // TODO
 }
 
-bool Spielfeld::ganzeSpalte(int x, Spieler spieler) {
-    // TODO
-}
-
-bool Spielfeld::alleFelderBelegt() {
-    for (int x = 0; x < 3; x++) {
-        for (int y = 0; y < 3; y++) {
-            if (belegung[y][x] == Leer) {
+bool GameBoard::allFieldsTaken() {
+    for (int columns = 0; columns < 3; columns++) {
+        for (int rows = 0; rows < 3; rows++) {
+            if (position[rows][columns] == Leer) {
                 return false;
             }
         }
@@ -102,14 +112,14 @@ bool Spielfeld::alleFelderBelegt() {
     return true;
 }
 
-/** Überladener <<-Operator für Spielfeld-Markierungen */
-std::ostream& operator<<(std::ostream& os, Spielfeld::Markierung markierung) {
-    os << (char)markierung;
+/** Überladener <<-Operator für GameBoard-Markierungen */
+std::ostream& operator<<(std::ostream& os, GameBoard::Marking marking) {
+    os << (char)marking;
     return os;
 }
 
-/** Überladener <<-Operator für Spieler */
-std::ostream& operator<<(std::ostream& os, Spielfeld::Spieler spieler) {
-    os << (char)spieler;
+/** Überladener <<-Operator für Player */
+std::ostream& operator<<(std::ostream& os, GameBoard::Player player) {
+    os << (char)player;
     return os;
 }
