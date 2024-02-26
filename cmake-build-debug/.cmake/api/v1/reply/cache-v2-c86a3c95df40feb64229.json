@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt/cmake-build-debug"
+			"value" : "d:/GitHub/Repos/TicTacToe_Game/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "D:/GitHub/Repos/TicTacToe_Game/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt"
+			"value" : "D:/GitHub/Repos/TicTacToe_Game"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1279,7 +1279,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt/cmake-build-debug"
+			"value" : "D:/GitHub/Repos/TicTacToe_Game/cmake-build-debug"
 		},
 		{
 			"name" : "HFU_TicTacToe_tt_IS_TOP_LEVEL",
@@ -1303,7 +1303,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt"
+			"value" : "D:/GitHub/Repos/TicTacToe_Game"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

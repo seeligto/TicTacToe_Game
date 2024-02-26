@@ -1,4 +1,4 @@
-# Install script for directory: D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt
+# Install script for directory: D:/GitHub/Repos/TicTacToe_Game
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/GitHub/Repos/TicTacToeWIP/HFU-TicTacToe_tt/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/GitHub/Repos/TicTacToe_Game/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
